@@ -22,6 +22,10 @@ body {
 	background: #000;
 }
 
+body.onload {
+	visibility: visible;
+}
+
 div#background {
 	position: absolute;
 	top: 0px;
@@ -33,6 +37,10 @@ div#background {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	filter: grayscale(100%) blur(70px) brightness(0.25);
+}
+
+body.onload div#background {
 	animation: background_fade_in 4s ease-out forwards;
 }
 
@@ -41,7 +49,7 @@ div#background {
 		filter: grayscale(100%) blur(70px) brightness(0.25);
 	}
 	100% {
-		filter: grayscale(90%) blur(2px) brightness(0.55);
+		filter: grayscale(90%) blur(1px) brightness(0.55);
 	}
 }
 
