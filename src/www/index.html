@@ -7,6 +7,14 @@
 		<meta http-equiv="Expires" content="-1" />
 		<link rel="stylesheet" type="text/css" href="css/style.css?v=1.0" />
 	</head>
+
+	<style>
+		body {
+			background: #000;
+			visibility: hidden;
+		}
+	</style>
+
 	<body>
 		<div id="background"></div>
 		<div id="content">
@@ -35,4 +43,10 @@
 			</div>
 		</div>
 	</body>
+
+	<script>
+		window.onload = () => {
+			document.body.classList.add('onload')
+		}
+	</script>
 </html>
