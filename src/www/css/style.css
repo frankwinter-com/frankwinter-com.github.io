@@ -75,11 +75,13 @@ div#text {
 h1 {
 	margin-bottom: 1em;
 	font-family: 'PT Serif', serif;
+	font-size: 8vmin;
 	text-align: center;
 	color: #fff;
 }
 
 p {
+	font-size: 3vmin;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -91,14 +93,18 @@ div#social_icons {
 }
 
 a {
+	margin: 10px;
 	border: none;
 }
 
-img {
-	margin: 10px;
+svg {
 	width: 30px;
+	transition: 0.25s;
+	fill: #999;
+	filter: drop-shadow(0px 0px 5px #000);
 }
 
-a:hover img {
+a:hover svg {
+	fill: #fff;
 	filter: drop-shadow(0px 0px 10px #f00);
 }
