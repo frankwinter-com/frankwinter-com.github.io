@@ -11,7 +11,10 @@
 		 (C) 2021 by Frank Winter. All rights reserved. -->
 
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+		@font-face {
+			font-family: vt323;
+			src: url('./style/VT323-Regular.ttf');
+		}
 
 		* {
 			position: relative;
@@ -38,8 +41,6 @@
 			justify-content: center;
 
 			background: #000;
-			opacity: 0;
-			transition: opacity 1s;
 		}
 
 		svg {
@@ -48,14 +49,9 @@
 		}
 	</style>
 
-	<script>
-		window.onload = () => {
-			document.body.style.opacity = 1
-		}
-	</script>
-
 	<body>
 		<svg
+			id="svg"
 			role="img"
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="-500 -500 1000 1000"
@@ -100,16 +96,6 @@
 					}
 				}
 
-				@keyframes vline {
-					0% {
-						background-position-y: 50%, 50%, 0%;
-					}
-
-					100% {
-						background-position-y: 50%, 50%, 100%;
-					}
-				}
-
 				g#screen {
 					animation: glitch_1 7s infinite, glitch_2 10s infinite,
 						glitch_3 6s infinite;
@@ -137,8 +123,51 @@
 				}
 			</style>
 
+			<!-- Loader -->
+			<g
+				id="loader"
+				transform="translate(-500,-450)"
+				filter="url(#glitch_rgb)"
+			>
+				<animate
+					id="loaderout"
+					attributeName="opacity"
+					to="0"
+					dur="1s"
+					begin="loaderin.end+1s"
+					fill="freeze"
+				/>
+
+				<path id="loaderpath">
+					<animate
+						id="loaderin"
+						attributeName="d"
+						from="m0,00 h0"
+						to="m0,0 h470"
+						dur="2s"
+						begin="svg.load"
+						fill="freeze"
+					/>
+				</path>
+
+				<text>
+					<textPath href="#loaderpath">
+						Loading VHS subsystem...
+					</textPath>
+				</text>
+			</g>
+
 			<!-- Screen -->
-			<g id="screen">
+			<g id="screen" opacity="0">
+				<animate
+					id="screenfadein"
+					attributeName="opacity"
+					dur="2s"
+					to="1"
+					begin="loaderout.end"
+					fill="freeze"
+				/>
+
 				<!-- Background -->
 				<rect
 					x="-500"
@@ -157,6 +186,13 @@
 
 				<!-- Avatar -->
 				<g id="avatar" filter="url(#glitch)">
+					<animate
+						attributeName="opacity"
+						attributeType="XML"
+						values="1;1;1;0.75;1;1;0.5;1;1;1;1;0.25;1;1;0.75;1"
+						dur="20s"
+						repeatCount="indefinite"
+					/>
 					<image
 						href="./fw/fw_front.png"
 						x="-600"
@@ -247,8 +283,8 @@
 								<animate
 									attributeName="dx"
 									attributeType="XML"
-									values="0; -5; 0; -8; -2; -4; 0 ;-3; 0"
-									dur="0.2s"
+									values="0; -5; 0; -4; -2; -3; 0 ;-3; 0"
+									dur="5s"
 									repeatCount="indefinite"
 								/>
 							</feOffset>
@@ -262,8 +298,8 @@
 								<animate
 									attributeName="dx"
 									attributeType="XML"
-									values="0; 0; 0; -3; 0; 8; 0 ;-1; 0"
-									dur="0.15s"
+									values="0; 0; 0; -3; 0; 5; 0 ;-1; 0"
+									dur="6s"
 									repeatCount="indefinite"
 								/>
 							</feOffset>
@@ -277,8 +313,8 @@
 								<animate
 									attributeName="dx"
 									attributeType="XML"
-									values="0; 3; -1; 4; 0; 2; 0 ;8; 0"
-									dur="0.35s"
+									values="0; 4; -1; 4; 0; 2; 0 ;5; 0"
+									dur="7s"
 									repeatCount="indefinite"
 								/>
 							</feOffset>
@@ -305,7 +341,7 @@
 							from="m0,00 h0"
 							to="m0,0 h700"
 							dur="5s"
-							begin="2s"
+							begin="screenfadein.end+1s"
 							fill="freeze"
 						/>
 					</path>
