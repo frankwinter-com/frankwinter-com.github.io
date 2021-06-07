@@ -49,7 +49,6 @@
 
 	<body>
 		<svg
-			id="svg"
 			role="img"
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="-500 -500 1000 1000"
@@ -122,11 +121,7 @@
 			</style>
 
 			<!-- Loader -->
-			<g
-				id="loader"
-				transform="translate(-500 -450)"
-				filter="url(#glitch_rgb)"
-			>
+			<g id="loader" transform="translate(-500 -450)">
 				<animate
 					id="loaderout"
 					attributeName="opacity"
@@ -143,14 +138,14 @@
 						from="m0 00 h0"
 						to="m0,0 h470"
 						dur="2s"
-						begin="svg.SVGLoad;svg.load"
+						begin="1.5s"
 						fill="freeze"
 					/>
 				</path>
 
 				<text>
 					<textPath href="#loaderpath">
-						Loading VHS subsystem...
+						Loading 1990s style...
 					</textPath>
 				</text>
 			</g>
@@ -347,7 +342,7 @@
 							attributeName="d"
 							from="m0 50 h0"
 							to="m0 50 h400"
-							dur="5s"
+							dur="3s"
 							begin="textline1animation.end+0s"
 							fill="freeze"
 						/>
