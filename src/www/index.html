@@ -2,52 +2,50 @@
 <html lang="de">
 	<head>
 		<title>frankwinter.com</title>
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="-1" />
+
+		<style>
+			@font-face {
+				font-family: vt323;
+				src: url('./style/VT323-Regular.ttf');
+			}
+
+			* {
+				position: relative;
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				height: 100vh;
+				font-family: 'VT323', monospace;
+				font-weight: 400;
+				line-height: 1.2;
+				font-size: 48px;
+			}
+
+			body {
+				height: 100vh;
+				width: 100vw;
+
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				background: #000;
+			}
+
+			svg {
+				height: 95%;
+				width: auto;
+			}
+		</style>
 	</head>
 
 	<!-- Frank Winter's micro website www.frankwinter.com
 		 (C) 2021 by Frank Winter. All rights reserved. -->
-
-	<style>
-		@font-face {
-			font-family: vt323;
-			src: url('./style/VT323-Regular.ttf');
-		}
-
-		* {
-			position: relative;
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		html {
-			height: 100vh;
-			font-family: 'Montserrat', sans-serif;
-			font-family: 'VT323', monospace;
-			font-weight: 400;
-			line-height: 1.2;
-			font-size: 48px;
-		}
-
-		body {
-			height: 100vh;
-			width: 100vw;
-
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			background: #000;
-		}
-
-		svg {
-			height: 95%;
-			width: auto;
-		}
-	</style>
 
 	<body>
 		<svg
@@ -126,7 +124,7 @@
 			<!-- Loader -->
 			<g
 				id="loader"
-				transform="translate(-500,-450)"
+				transform="translate(-500 -450)"
 				filter="url(#glitch_rgb)"
 			>
 				<animate
@@ -138,14 +136,14 @@
 					fill="freeze"
 				/>
 
-				<path id="loaderpath">
+				<path id="loaderpath" d="m0 00 h0">
 					<animate
 						id="loaderin"
 						attributeName="d"
-						from="m0,00 h0"
+						from="m0 00 h0"
 						to="m0,0 h470"
 						dur="2s"
-						begin="svg.load"
+						begin="svg.SVGLoad;svg.load"
 						fill="freeze"
 					/>
 				</path>
@@ -198,20 +196,22 @@
 						x="-600"
 						y="-461"
 						width="1200"
+						height="1000"
 					/>
 					<image
 						id="avatar-closed-eyes"
 						href="./fw/fw_front_closed_eyes.png"
 						x="-240"
-						y="-245"
+						y="-225"
 						width="480"
+						height="120"
 						visibility="hidden"
 					>
 						<set
-							id="avatar-set-eyes-closed"
+							id="avatar_set_eyes_closed"
 							attributeName="visibility"
 							to="visible"
-							begin="0;avatar-set-eyes-closed.end+8s"
+							begin="0;avatar_set_eyes_closed.end+8s"
 							dur="0.35s"
 						/>
 					</image>
@@ -225,7 +225,6 @@
 						width="1200"
 						height="1200"
 						fill="url(#rasterlines)"
-						fill="red"
 						opacity="0.2"
 					/>
 					<defs>
@@ -274,7 +273,6 @@
 						<filter id="glitch_rgb" x="0" y="0">
 							<feColorMatrix
 								in="SourceGraphic"
-								mode="matrix"
 								values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
 								result="r"
 							/>
@@ -290,7 +288,6 @@
 							</feOffset>
 							<feColorMatrix
 								in="SourceGraphic"
-								mode="matrix"
 								values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
 								result="g"
 							/>
@@ -305,7 +302,6 @@
 							</feOffset>
 							<feColorMatrix
 								in="SourceGraphic"
-								mode="matrix"
 								values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
 								result="b"
 							/>
@@ -334,41 +330,41 @@
 					</defs>
 
 					<!-- Text -->
-					<path id="textline1path">
+					<path id="textline1path" d="m0 00 h0">
 						<animate
 							id="textline1animation"
 							attributeName="d"
-							from="m0,00 h0"
-							to="m0,0 h700"
+							from="m0 00 h0"
+							to="m0 0 h700"
 							dur="5s"
 							begin="screenfadein.end+1s"
 							fill="freeze"
 						/>
 					</path>
-					<path id="textline2path">
+					<path id="textline2path" d="m0 50 h0">
 						<animate
 							id="textline2animation"
 							attributeName="d"
-							from="m0,50 h0"
-							to="m0,50 h400"
+							from="m0 50 h0"
+							to="m0 50 h400"
 							dur="5s"
 							begin="textline1animation.end+0s"
 							fill="freeze"
 						/>
 					</path>
-					<path id="textline3path">
+					<path id="textline3path" d="m0 100 h0">
 						<animate
 							id="textline3animation"
 							attributeName="d"
-							from="m0,100 h0"
-							to="m0,100 h700"
+							from="m0 100 h0"
+							to="m0 100 h700"
 							dur="5s"
 							begin="textline2animation.end+0s"
 							fill="freeze"
 						/>
 					</path>
 
-					<g transform="translate(-450,200)">
+					<g transform="translate(-450 200)">
 						<text>
 							<textPath href="#textline1path">
 								Hi, I'm Frank, digital creator from
@@ -386,7 +382,7 @@
 					<!-- Icons -->
 					<g
 						id="icons"
-						transform="translate(-300,350)"
+						transform="translate(-300 350)"
 						pointer-events="bounding-box"
 						opacity="0"
 					>
@@ -402,7 +398,6 @@
 
 						<!-- Facebook -->
 						<g transform="translate(0 0) scale(3 3)">
-							>
 							<a
 								href="https://www.facebook.com/frankwinterdigital"
 								target="_blank"
@@ -476,5 +471,11 @@
 				</g>
 			</g>
 		</svg>
+		<script>
+			let e = document.getElementById('svg')
+			e.addEventListener('SVGLoad', () => {
+				console.log('L')
+			})
+		</script>
 	</body>
 </html>
