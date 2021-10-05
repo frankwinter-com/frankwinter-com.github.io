@@ -85,11 +85,11 @@
 				@keyframes glitch_3 {
 					0%,
 					100% {
-						filter: blur(0.5px);
+						filter: blur(0.25px);
 					}
 
 					50% {
-						filter: blur(1.25px);
+						filter: blur(1.5px);
 					}
 				}
 
@@ -99,12 +99,13 @@
 				}
 
 				g#avatar {
-					filter: saturate(0) contrast(120%) brightness(1.5)
+					filter: saturate(0.1) contrast(120%) brightness(1.5)
 						drop-shadow(0px 0px 30px #000);
 				}
 
 				text {
 					fill: #ccc;
+					opacity: 0.75;
 					filter: drop-shadow(1px 1px 2px #000);
 				}
 
@@ -179,37 +180,39 @@
 
 				<!-- Avatar -->
 				<g id="avatar" filter="url(#glitch)">
-					<animate
-						attributeName="opacity"
-						attributeType="XML"
-						values="1;1;1;0.75;1;1;0.5;1;1;1;1;0.25;1;1;0.75;1"
-						dur="20s"
-						repeatCount="indefinite"
-					/>
-					<image
-						href="./fw/fw_front.png"
-						x="-600"
-						y="-461"
-						width="1200"
-						height="1000"
-					/>
-					<image
-						id="avatar-closed-eyes"
-						href="./fw/fw_front_closed_eyes.png"
-						x="-240"
-						y="-225"
-						width="480"
-						height="120"
-						visibility="hidden"
-					>
-						<set
-							id="avatar_set_eyes_closed"
-							attributeName="visibility"
-							to="visible"
-							begin="0;avatar_set_eyes_closed.end+8s"
-							dur="0.35s"
+					<g filter="url(#glitch_rgb)">
+						<animate
+							attributeName="opacity"
+							attributeType="XML"
+							values="1;1;1;0.75;1;1;0.5;1;1;0.75;1;0.75;1;1;0.5;0.75"
+							dur="7s"
+							repeatCount="indefinite"
 						/>
-					</image>
+						<image
+							href="./fw/fw_front.png"
+							x="-600"
+							y="-461"
+							width="1200"
+							height="1000"
+						/>
+						<image
+							id="avatar-closed-eyes"
+							href="./fw/fw_front_closed_eyes.png"
+							x="-240"
+							y="-225"
+							width="480"
+							height="120"
+							visibility="hidden"
+						>
+							<set
+								id="avatar_set_eyes_closed"
+								attributeName="visibility"
+								to="visible"
+								begin="0;avatar_set_eyes_closed.end+8s"
+								dur="0.35s"
+							/>
+						</image>
+					</g>
 				</g>
 
 				<!-- CRT raster lines -->
@@ -220,7 +223,7 @@
 						width="1200"
 						height="1200"
 						fill="url(#rasterlines)"
-						opacity="0.2"
+						opacity="0.3"
 					/>
 					<defs>
 						<pattern
@@ -290,7 +293,7 @@
 								<animate
 									attributeName="dx"
 									attributeType="XML"
-									values="0; 0; 0; -3; 0; 5; 0 ;-1; 0"
+									values="0; 0; 0; -3; 0; 5; 0; -1; 0"
 									dur="6s"
 									repeatCount="indefinite"
 								/>
@@ -304,7 +307,7 @@
 								<animate
 									attributeName="dx"
 									attributeType="XML"
-									values="0; 4; -1; 4; 0; 2; 0 ;5; 0"
+									values="0; 4; -1; 4; 0; 2; 0 ;5 ; 0"
 									dur="7s"
 									repeatCount="indefinite"
 								/>
