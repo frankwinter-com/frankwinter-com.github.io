@@ -87,6 +87,19 @@
 					}
 				}
 
+				@keyframes text_glitch {
+					30%,
+					70% {
+						transform: translate(0px);
+					}
+					50% {
+						transform: translate(7px);
+					}
+					80% {
+						transform: scaleY(1.05);
+					}
+				}
+
 				g#screen {
 					animation: glitch_1 20s infinite, glitch_2 7s infinite;
 				}
@@ -100,6 +113,7 @@
 					fill: #ccc;
 					opacity: 0.75;
 					filter: drop-shadow(1px 1px 2px #000);
+					animation: text_glitch 15s infinite;
 				}
 
 				g#icons path {
