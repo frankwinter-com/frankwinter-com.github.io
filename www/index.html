@@ -61,15 +61,18 @@
 					100% {
 						transform: translate(0px);
 					}
+					40% {
+						transform: skewX(2deg);
+					}
 					50% {
-						transform: translate(10px);
+						transform: translate(5px);
 					}
 					70% {
-						transform: scaleY(1) skewX(-5deg);
+						transform: skewX(-2deg);
 					}
 
-					90% {
-						transform: scaleY(1.1);
+					80% {
+						transform: scaleY(0.75) skewX(5deg);
 					}
 				}
 
@@ -85,7 +88,7 @@
 				}
 
 				g#screen {
-					animation: glitch_1 12s infinite, glitch_2 9s infinite;
+					animation: glitch_1 20s infinite, glitch_2 7s infinite;
 				}
 
 				g#avatar {
