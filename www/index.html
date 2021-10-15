@@ -56,25 +56,16 @@
 			<style>
 				@keyframes glitch_1 {
 					0%,
+					30%,
+					60%,
 					100% {
-						transform: skewX(0deg);
+						transform: translate(0px);
 					}
-
 					50% {
-						transform: skewX(0deg);
+						transform: translate(10px);
 					}
-
-					90% {
-						transform: skewX(-5deg);
-					}
-				}
-
-				@keyframes glitch_2 {
-					0% {
-					}
-
 					70% {
-						transform: scaleY(1);
+						transform: scaleY(1) skewX(-5deg);
 					}
 
 					90% {
@@ -82,20 +73,19 @@
 					}
 				}
 
-				@keyframes glitch_3 {
+				@keyframes glitch_2 {
 					0%,
 					100% {
-						filter: blur(0.25px);
+						filter: blur(0.5px);
 					}
 
 					50% {
-						filter: blur(1.5px);
+						filter: blur(2px);
 					}
 				}
 
 				g#screen {
-					animation: glitch_1 7s infinite, glitch_2 10s infinite,
-						glitch_3 6s infinite;
+					animation: glitch_1 12s infinite, glitch_2 9s infinite;
 				}
 
 				g#avatar {
@@ -121,36 +111,6 @@
 				}
 			</style>
 
-			<!-- Loader -->
-			<g id="loader" transform="translate(-500 -450)">
-				<animate
-					id="loaderout"
-					attributeName="opacity"
-					to="0"
-					dur="1s"
-					begin="loaderin.end+1s"
-					fill="freeze"
-				/>
-
-				<path id="loaderpath" d="m0 00 h0">
-					<animate
-						id="loaderin"
-						attributeName="d"
-						from="m0 00 h0"
-						to="m0,0 h470"
-						dur="2s"
-						begin="1.5s"
-						fill="freeze"
-					/>
-				</path>
-
-				<text>
-					<textPath href="#loaderpath">
-						Loading 1990s style...
-					</textPath>
-				</text>
-			</g>
-
 			<!-- Screen -->
 			<g id="screen" opacity="0">
 				<animate
@@ -158,7 +118,6 @@
 					attributeName="opacity"
 					dur="2s"
 					to="1"
-					begin="loaderout.end"
 					fill="freeze"
 				/>
 
@@ -174,7 +133,7 @@
 						attributeName="fill"
 						dur="30s"
 						repeatCount="indefinite"
-						values="#090;#900;#009;#090"
+						values="#090; #009; #900; #090"
 					/>
 				</rect>
 
@@ -184,8 +143,8 @@
 						<animate
 							attributeName="opacity"
 							attributeType="XML"
-							values="1;1;1;0.75;1;1;0.5;1;1;0.75;1;0.75;1;1;0.5;0.75"
-							dur="7s"
+							values="1; 0.75; 1; 1; 0.5; 1; 0.75; 1; 0.75; 1; 0.5; 1"
+							dur="9s"
 							repeatCount="indefinite"
 						/>
 						<image
