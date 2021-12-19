@@ -23,7 +23,6 @@
 				font-family: 'VT323', monospace;
 				font-weight: 400;
 				line-height: 1.2;
-				font-size: 40px;
 			}
 
 			body {
@@ -112,14 +111,27 @@
 
 				text {
 					fill: #ccc;
-					font-size: 40px;
+					font-size: 48px;
 					opacity: 0.5;
 					filter: drop-shadow(1px 1px 2px #000);
 					animation: text_glitch 15s infinite;
 				}
 
-				text.colored {
+				tspan.red {
+					fill: #c00;
+				}
+
+				tspan.green {
 					fill: #0c0;
+				}
+
+				tspan.blue {
+					fill: #00c;
+				}
+
+				g#icons g {
+					opacity: 0;
+					transition: 0.5s;
 				}
 
 				g#icons path {
@@ -131,6 +143,7 @@
 				g#icons path:hover {
 					fill: #ccc;
 					filter: drop-shadow(0px 0px 4px #060) blur(0.25px);
+					transform: scale(1.1);
 				}
 			</style>
 
@@ -290,38 +303,31 @@
 					<!-- Text -->
 					<g transform="translate(-450 -450)">
 						<text id="textline1" y="0"></text>
-						<text id="textline2" class="colored" y="40"></text>
-						<text id="textline3" class="colored" y="80"></text>
+						<text id="textline2" y="40"></text>
+						<text id="textline3" y="80"></text>
 						<text id="textline4" y="120"></text>
 						<text id="textline5" y="160"></text>
-						<text id="textline6" class="colored" y="200"></text>
-						<text id="textline7" class="colored" y="240"></text>
-						<text id="textline8" class="colored" y="280"></text>
-						<text id="textline9" class="colored" y="320"></text>
-						<text id="textline10" class="colored" y="360"></text>
+						<text id="textline6" y="200"></text>
+						<text id="textline7" y="240"></text>
+						<text id="textline8" y="280"></text>
+						<text id="textline9" y="320"></text>
+						<text id="textline10" y="360"></text>
 						<text id="textline11" y="400"></text>
 						<text id="textline12" y="440"></text>
-						<text id="textline13" class="colored" y="480"></text>
-						<text id="textline14" y="520"></text>
+						<text id="textline13" y="480"></text>
+						<text id="textline14" y="720"></text>
+						<text id="textline15" y="760"></text>
+						<text id="textline16" y="800"></text>
+						<text id="textline17" y="840"></text>
 					</g>
 
 					<!-- Icons -->
 					<g
 						id="icons"
-						transform="translate(-300 250)"
+						transform="translate(-300 100)"
 						pointer-events="bounding-box"
-						opacity="0"
 					>
-						<animate
-							id="iconsFadeInAnimation"
-							attributeName="opacity"
-							from="0"
-							to="1"
-							dur="2s"
-							fill="freeze"
-							begin="indefinite"
-						/>
-
+						>
 						<!-- Facebook -->
 						<g transform="translate(0 0) scale(3 3)">
 							<a
@@ -392,11 +398,25 @@
 
 	<script>
 		window.onload = async () => {
-			await printText('textline1', 'cat intro.txt', 300, 'frank@devpc:~$ ')
-			await printText('textline2', "Hey, I'm Frank, full stack web developer")
+			await printText(
+				'textline1',
+				'whoami',
+				300,
+				'<tspan class="green">frank@devpc:</tspan><tspan class="blue">~</tspan>$ '
+			)
+			await printText(
+				'textline2',
+
+				"Hey, I'm <tspan class='red'>Frank</tspan>, full stack web developer"
+			)
 			await printText('textline3', 'and digital creator from Cottbus, Germany.')
 
-			await printText('textline5', 'cat moreinfo.txt', 350, 'frank@devpc:~$ ')
+			await printText(
+				'textline5',
+				'cat info.txt',
+				300,
+				'<tspan class="green">frank@devpc:</tspan><tspan class="blue">~</tspan>$ '
+			)
 			await printText('textline6', "I'm using")
 			await printText('textline7', ' - nodejs / sql / nosql for backend')
 			await printText('textline8', ' - html5 / css / es6 / vuejs for frontend')
@@ -409,9 +429,31 @@
 				' - Ableton Live and tons of plugins for audio'
 			)
 
-			await printText('textline12', 'cat profiles.txt', 350, 'frank@devpc:~$ ')
-			await printText('textline13', 'Sure, have a peek at my social profiles:')
+			await printText(
+				'textline12',
+				'./profiles.sh',
+				300,
+				'<tspan class="green">frank@devpc:</tspan><tspan class="blue">~</tspan>$ '
+			)
+			await printText(
+				'textline13',
+				'Have a peek at some of my social profiles:'
+			)
 			await fadeInIcons()
+			await printText(
+				'textline14',
+				'cat README.md',
+				300,
+				'<tspan class="green">frank@devpc:</tspan><tspan class="blue">~</tspan>$ '
+			)
+			await printText(
+				'textline15',
+				'like that retro style? Feel free to grab anything'
+			)
+			await printText(
+				'textline16',
+				'you like from my public GitHub repository.'
+			)
 		}
 
 		async function wait(ms) {
@@ -420,7 +462,7 @@
 			})
 		}
 
-		async function printText(id, text, speed = 30, prefix = '') {
+		async function printText(id, text, speed = 20, prefix = '') {
 			txtElement = document.getElementById(id)
 			textLine = prefix
 			txtElement.innerHTML = textLine
@@ -433,8 +475,19 @@
 		}
 
 		async function fadeInIcons() {
-			let element = document.getElementById('iconsFadeInAnimation')
-			await element.beginElement()
+			let elements = Array.from(document.querySelector('g#icons').children)
+			return new Promise((resolve) => {
+				elements.forEach((element, index) => {
+					element.addEventListener('transitionend', () => {
+						if (index < elements.length - 1) {
+							elements[index + 1].style.opacity = '1'
+						} else {
+							resolve()
+						}
+					})
+				})
+				elements[0].style.opacity = '1'
+			})
 		}
 	</script>
 </html>
