@@ -453,12 +453,9 @@
 			)
 			await printText(
 				'textline15',
-				'Like that retro style? Feel free to grab anything'
+				'Hope you like that retro style made in SVG'
 			)
-			await printText(
-				'textline16',
-				'you like from my public <a href="https://github.com/frankwinter-com/frankwinter.com_website" target="_blank">GitHub</a> repo.'
-			)
+			await printText('textline16', 'with some CSS and Javascript code.')
 		}
 
 		async function wait(ms) {
@@ -469,6 +466,7 @@
 
 		async function printText(id, text, speed = 20, prefix = '') {
 			txtElement = document.getElementById(id)
+
 			textLine = prefix
 			txtElement.innerHTML = textLine
 			await wait(speed * 2)
